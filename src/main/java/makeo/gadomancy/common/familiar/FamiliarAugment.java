@@ -29,8 +29,8 @@ public class FamiliarAugment {
 
     //Side effects
     public static final FamiliarAugment DAMAGE_INCREASE = new FamiliarAugment("damage", new AspectList().add(Aspect.FIRE, 3)).addCondition(new PreconditionAny(SHOCK, POISON, FIRE, WEAKNESS));
-    public static final FamiliarAugment RANGE_INCREASE = new FamiliarAugment("range", new AspectList().add(Aspect.AIR, 2).add(Aspect.ORDER, 1)).addConflict(DAMAGE_INCREASE).addCondition(new PreconditionAny(SHOCK, POISON, FIRE, WEAKNESS));
-    public static final FamiliarAugment ATTACK_SPEED = new FamiliarAugment("speed", new AspectList().add(Aspect.ORDER, 2).add(Aspect.FIRE, 1)).addConflict(DAMAGE_INCREASE, RANGE_INCREASE).addCondition(new PreconditionAny(SHOCK, POISON, FIRE, WEAKNESS));
+    public static final FamiliarAugment RANGE_INCREASE = new FamiliarAugment("range", new AspectList().add(Aspect.AIR, 2).add(Aspect.ORDER, 1))/*.addConflict(DAMAGE_INCREASE)*/.addCondition(new PreconditionAny(SHOCK, POISON, FIRE, WEAKNESS));
+    public static final FamiliarAugment ATTACK_SPEED = new FamiliarAugment("speed", new AspectList().add(Aspect.ORDER, 2).add(Aspect.FIRE, 1))/*.addConflict(DAMAGE_INCREASE, RANGE_INCREASE)*/.addCondition(new PreconditionAny(SHOCK, POISON, FIRE, WEAKNESS));
 
 
     private final String unlocalizedName;
