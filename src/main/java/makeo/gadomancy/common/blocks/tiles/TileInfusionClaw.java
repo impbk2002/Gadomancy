@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ItemInWorldManager;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.IPlayerFileData;
@@ -221,7 +222,8 @@ public class TileInfusionClaw extends SynchronizedTileEntity implements IInvento
         }
     }
 
-    private void performClickBlock() {
+    @SuppressWarnings("unused")
+	private void performClickBlock() {
         World world = getWorldObj();
         int x = xCoord;
         int y = yCoord - 1;
@@ -229,6 +231,17 @@ public class TileInfusionClaw extends SynchronizedTileEntity implements IInvento
 
         ClickBehavior behavior = getClickBehavior(world, x, y, z);
         if(behavior != null) {
+            
+            if (world == null){
+                try { 
+                    world = getWorldObj();
+                }
+                catch(NullPointerException e){
+                    makeo.gadomancy.common.Gadomancy.log.error("fatal error, world == null! at InfusionClaw");
+                    return;
+                }
+            }
+            
             AdvancedFakePlayer fakePlayer = new AdvancedFakePlayer((WorldServer) world, FAKE_UUID);
             loadResearch(fakePlayer);
 
@@ -246,6 +259,11 @@ public class TileInfusionClaw extends SynchronizedTileEntity implements IInvento
                 im.setWorld((WorldServer) world);
             }
 
+            if(fakePlayer == null){
+                makeo.gadomancy.common.Gadomancy.log.warn("Infusion Claw was build inside of a protected area! You need to allow FakePlayers here!");
+                return;
+            }
+            
             fakePlayer.setHeldItem(wandStack);
             this.im.activateBlockOrUseItem(fakePlayer, world, wandStack, x, y, z, ForgeDirection.UP.ordinal(), 0.5F, 0.5F, 0.5F);
             addInstability(behavior);
