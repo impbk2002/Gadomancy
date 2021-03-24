@@ -16,6 +16,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.oredict.OreDictionary;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -28,7 +29,6 @@ import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 import thaumcraft.common.items.ItemWispEssence;
 import thaumcraft.common.items.wands.ItemWandCasting;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -57,6 +57,10 @@ public class RegisteredRecipes {
     public static List[] auraCoreRecipes;
 
     public static InfusionRecipe recipeGolemSilverwood;
+    public static CrucibleRecipe recipeGolemGold;
+    public static CrucibleRecipe recipeGolemEmerald;
+    public static CrucibleRecipe recipeGolemObsidian;
+    public static InfusionRecipe recipeGolemVoidMetal;
     public static InfusionRecipe[] recipesGolemRunicShield;
     public static InfusionRecipe recipeGolemCoreBreak;
     public static InfusionRecipe recipeInfusionClaw;
@@ -91,13 +95,90 @@ public class RegisteredRecipes {
 
     public static InfusionEnchantmentRecipe recipeRevealer;
 
+    public static InfusionRecipe recipeMasterRingIgnis;
+    public static InfusionRecipe recipeMasterRingAqua;
+    public static InfusionRecipe recipeMasterRingTera;
+    public static InfusionRecipe recipeMasterRingAer;
+    public static InfusionRecipe recipeMasterRingOrdo;
+    public static InfusionRecipe recipeMasterRingPerditio;
+    public static InfusionRecipe recipeMasterRingOne;
+    
     public static void init() {
         AdditionalGolemType typeSilverwood = RegisteredGolemStuff.typeSilverwood;
+        AdditionalGolemType typeObsidian = RegisteredGolemStuff.typeObsidian;
+        AdditionalGolemType typeGold = RegisteredGolemStuff.typeGold;
+        AdditionalGolemType typeEmerald = RegisteredGolemStuff.typeEmerald;
+        AdditionalGolemType typeVoidMetal = RegisteredGolemStuff.typeVoidMetal;
+        
+        
+        RegisteredRecipes.recipeMasterRingIgnis = ThaumcraftApi.addInfusionCraftingRecipe(SimpleResearchItem.getFullName("MASTERRINGIGNIS"),
+        		new ItemStack(RegisteredItems.itemBaubleRing, 1, 0), 15, 
+        		new AspectList().add(Aspect.FIRE, 128).add(Aspect.MAGIC, 64).add(Aspect.AURA, 64), 
+        		new ItemStack(ConfigItems.itemBaubleBlanks,1, 5), 
+        		new ItemStack[] { new ItemStack(ConfigItems.itemWandRod, 1, 6), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemWandRod,1, 6), new ItemStack(ConfigItems.itemGolemUpgrade,1, 2) });
+
+        RegisteredRecipes.recipeMasterRingAqua = ThaumcraftApi.addInfusionCraftingRecipe(SimpleResearchItem.getFullName("MASTERRINGAQUA"),
+        		new ItemStack(RegisteredItems.itemBaubleRing, 1, 1), 15, 
+        		new AspectList().add(Aspect.WATER, 128).add(Aspect.MAGIC, 64).add(Aspect.AURA, 64), 
+        		new ItemStack(ConfigItems.itemBaubleBlanks,1, 6), 
+        		new ItemStack[] { new ItemStack(ConfigItems.itemWandRod,1, 3), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemWandRod,1, 3), new ItemStack(ConfigItems.itemGolemUpgrade,1, 3) });
+
+        RegisteredRecipes.recipeMasterRingTera = ThaumcraftApi.addInfusionCraftingRecipe(SimpleResearchItem.getFullName("MASTERRINGTERRA"),
+        		new ItemStack(RegisteredItems.itemBaubleRing, 1, 2), 15, 
+        		new AspectList().add(Aspect.EARTH, 128).add(Aspect.MAGIC, 64).add(Aspect.AURA, 64), 
+        		new ItemStack(ConfigItems.itemBaubleBlanks,1, 4), 
+        		new ItemStack[] { new ItemStack(ConfigItems.itemWandRod,1, 1), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemWandRod,1, 1), new ItemStack(ConfigItems.itemGolemUpgrade,1, 1) });
+
+        RegisteredRecipes.recipeMasterRingAer = ThaumcraftApi.addInfusionCraftingRecipe(SimpleResearchItem.getFullName("MASTERRINGAER"),
+        		new ItemStack(RegisteredItems.itemBaubleRing, 1, 3), 15, 
+        		new AspectList().add(Aspect.AIR, 128).add(Aspect.MAGIC, 64).add(Aspect.AURA, 64), 
+        		new ItemStack(ConfigItems.itemBaubleBlanks,1, 3), 
+        		new ItemStack[] { new ItemStack(ConfigItems.itemWandRod,1, 5), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemWandRod,1, 5), new ItemStack(ConfigItems.itemGolemUpgrade,1, 0) });
+
+        RegisteredRecipes.recipeMasterRingPerditio = ThaumcraftApi.addInfusionCraftingRecipe(SimpleResearchItem.getFullName("MASTERRINGPERDITIO"),
+        		new ItemStack(RegisteredItems.itemBaubleRing, 1, 5), 15, 
+        		new AspectList().add(Aspect.ENTROPY, 128).add(Aspect.MAGIC, 64).add(Aspect.AURA, 64), 
+        		new ItemStack(ConfigItems.itemBaubleBlanks,1, 8), 
+        		new ItemStack[] { new ItemStack(ConfigItems.itemWandRod,1, 7), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemWandRod,1, 7), new ItemStack(ConfigItems.itemGolemUpgrade,1, 5) });
+
+        RegisteredRecipes.recipeMasterRingOrdo = ThaumcraftApi.addInfusionCraftingRecipe(SimpleResearchItem.getFullName("MASTERRINGORDO"), 
+        		new ItemStack(RegisteredItems.itemBaubleRing, 1, 4), 15, 
+        		new AspectList().add(Aspect.ORDER, 128).add(Aspect.MAGIC, 64).add(Aspect.AURA, 64), 
+        		new ItemStack(ConfigItems.itemBaubleBlanks,1, 7),
+        		new ItemStack[] { new ItemStack(ConfigItems.itemWandRod,1, 4), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemWandRod,1, 4), new ItemStack(ConfigItems.itemGolemUpgrade,1, 4) });
+
+        RegisteredRecipes.recipeMasterRingOne = ThaumcraftApi.addInfusionCraftingRecipe(SimpleResearchItem.getFullName("MASTERRINGONE"), 
+        		new ItemStack(RegisteredItems.itemBaubleRing, 1, 6), 25, 
+        		new AspectList().add(Aspect.WATER, 128).add(Aspect.FIRE, 128).add(Aspect.AIR, 128).add(Aspect.EARTH, 128).add(Aspect.ORDER, 128).add(Aspect.ENTROPY, 128).add(Aspect.MAGIC, 256).add(Aspect.AURA, 256), 
+        		new ItemStack(ConfigItems.itemRingRunic,1, 1),
+        		new ItemStack[] { new ItemStack(ConfigItems.itemResource,1, 15), new ItemStack(RegisteredItems.itemBaubleRing, 1, 0), new ItemStack(RegisteredItems.itemBaubleRing, 1, 1), new ItemStack(ConfigItems.itemResource,1, 15), new ItemStack(RegisteredItems.itemBaubleRing, 1, 2), new ItemStack(RegisteredItems.itemBaubleRing, 1, 3), new ItemStack(ConfigItems.itemResource,1, 15), new ItemStack(RegisteredItems.itemBaubleRing, 1, 4), new ItemStack(RegisteredItems.itemBaubleRing, 1, 5) });
+
+
+        
+        
         RegisteredRecipes.recipeGolemSilverwood = ThaumcraftApi.addInfusionCraftingRecipe(SimpleResearchItem.getFullName("GOLEMSILVERWOOD"),
                 /*new ItemStack(Items.bread, 1, 0),*/new ItemStack(typeSilverwood.getPlacerItem(), 1, typeSilverwood.getEnumEntry().ordinal()),
                 7, new AspectList().add(Aspect.MOTION, 16).add(Aspect.MAGIC, 16).add(Aspect.MAN, 16).add(Aspect.SENSES, 16),
                 new ItemStack(ConfigBlocks.blockMagicalLog, 1, 1), new ItemStack[]{ new ItemStack(ConfigItems.itemResource, 1, 15), new ItemStack(ConfigItems.itemResource, 1, 14), new ItemStack(ConfigItems.itemResource, 1, 9), new ItemStack(ConfigItems.itemResource, 1, 3), new ItemStack(ConfigItems.itemResource, 1, 14), new ItemStack(ConfigItems.itemResource, 1, 9), new ItemStack(ConfigItems.itemResource, 1, 3)});
-
+        
+        //OreDictionary.getOres("nuggetVoid").get(0) == new ItemStack(ConfigItems.itemNugget, 1, 7)
+        RegisteredRecipes.recipeGolemVoidMetal = ThaumcraftApi.addInfusionCraftingRecipe(SimpleResearchItem.getFullName("GOLEMVOIDMETAL"),
+        		new ItemStack(typeVoidMetal.getPlacerItem(), 1, typeVoidMetal.getEnumEntry().ordinal()), 10,
+        		new AspectList().add(Aspect.VOID, 72).add(Aspect.DARKNESS, 72).add(Aspect.ELDRITCH, 18).add(Aspect.MAN, 4).add(Aspect.MOTION, 4).add(Aspect.SOUL, 4),
+        		new ItemStack(Blocks.iron_block), new ItemStack[] { new ItemStack(Items.gold_ingot), OreDictionary.getOres("nuggetVoid").get(0), OreDictionary.getOres("nuggetVoid").get(0), OreDictionary.getOres("nuggetGold").get(0), new ItemStack(ConfigItems.itemNugget, 1, 7), OreDictionary.getOres("nuggetVoid").get(0), OreDictionary.getOres("nuggetVoid").get(0), OreDictionary.getOres("nuggetVoid").get(0), OreDictionary.getOres("nuggetVoid").get(0), OreDictionary.getOres("nuggetGold").get(0), OreDictionary.getOres("nuggetVoid").get(0), OreDictionary.getOres("nuggetVoid").get(0) });
+        
+        RegisteredRecipes.recipeGolemGold = ThaumcraftApi.addCrucibleRecipe(SimpleResearchItem.getFullName("GOLEMGOLD"),
+        		new ItemStack(typeGold.getPlacerItem(), 1, typeGold.getEnumEntry().ordinal()), new ItemStack(Blocks.gold_block),
+        		new AspectList().add(Aspect.MAN, 4).add(Aspect.MOTION, 4).add(Aspect.SOUL, 4).add(Aspect.MIND, 4));
+        
+        RegisteredRecipes.recipeGolemEmerald = ThaumcraftApi.addCrucibleRecipe(SimpleResearchItem.getFullName("GOLEMEMERALD"),
+        		new ItemStack(typeEmerald.getPlacerItem(), 1, typeEmerald.getEnumEntry().ordinal()), new ItemStack(Blocks.emerald_block),
+        		new AspectList().add(Aspect.MAN, 4).add(Aspect.MOTION, 4).add(Aspect.SOUL, 4).add(Aspect.LIFE, 4));
+        
+        RegisteredRecipes.recipeGolemObsidian = ThaumcraftApi.addCrucibleRecipe(SimpleResearchItem.getFullName("GOLEMOBSIDIAN"),
+        		new ItemStack(typeObsidian.getPlacerItem(), 1, typeObsidian.getEnumEntry().ordinal()), new ItemStack(Blocks.obsidian),
+        		new AspectList().add(Aspect.MAN, 4).add(Aspect.MOTION, 4).add(Aspect.SOUL, 4).add(Aspect.ELDRITCH, 4));
+        
         RegisteredRecipes.recipesGolemRunicShield = InfusionUpgradeRecipe.createRecipes(SimpleResearchItem.getFullName("GOLEMRUNICSHIELD"), RegisteredGolemStuff.upgradeRunicShield, 5,
                 new AspectList().add(Aspect.MAGIC, 16).add(Aspect.ENERGY, 16).add(Aspect.ARMOR, 8).add(Aspect.AURA, 4),
                 new ItemStack[]{new ItemStack(ConfigItems.itemGirdleRunic, 1, 0), new ItemStack(ConfigItems.itemResource, 1, 14), new ItemStack(ConfigItems.itemResource, 1, 14)});
