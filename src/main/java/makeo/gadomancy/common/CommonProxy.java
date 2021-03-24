@@ -21,7 +21,6 @@ import makeo.gadomancy.common.utils.Injector;
 import makeo.gadomancy.common.utils.world.WorldProviderTCEldrich;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
@@ -43,6 +42,9 @@ import java.util.List;
  * Created by makeo @ 29.11.2014 14:18
  */
 public class CommonProxy implements IGuiHandler {
+
+    public static boolean serverOnlineState;
+
     public static final EventHandlerGolem EVENT_HANDLER_GOLEM = new EventHandlerGolem();
 
     public void onConstruct() { }
@@ -62,7 +64,7 @@ public class CommonProxy implements IGuiHandler {
     public void initalize() {
         NetworkRegistry.INSTANCE.registerGuiHandler(Gadomancy.instance, this);
 
-        MinecraftForge.EVENT_BUS.register(EVENT_HANDLER_GOLEM);
+        MinecraftForge.EVENT_BUS.register(CommonProxy.EVENT_HANDLER_GOLEM);
         FMLCommonHandler.instance().bus().register(new EventHandlerNetwork());
         EventHandlerWorld worldEventHandler = new EventHandlerWorld();
         MinecraftForge.EVENT_BUS.register(worldEventHandler);
