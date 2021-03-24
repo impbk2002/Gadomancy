@@ -1,5 +1,8 @@
 item.ItemGolemPlacer.silverwood.name=Silverwood Golem
 item.ItemGolemPlacer.obsidian.name=Obsidian Golem
+item.ItemGolemPlacer.gold.name=Gold Golem
+item.ItemGolemPlacer.emerald.name=Emerald Golem
+item.ItemGolemPlacer.voidmetal.name=Void Metal Golem
 item.ItemTransformationFocus.name=[WIP] Wand Focus: Transformation
 item.ItemFamiliar.name=Ethereal Familiar (Deprecated)
 item.ItemEtherealFamiliar.name=Ethereal Familiar
@@ -17,6 +20,30 @@ tc.research_category.gadomancy=Gadomancy
 tc.research_name.GADOMANCY.GOLEMSILVERWOOD=Silverwood Golems
 tc.research_text.GADOMANCY.GOLEMSILVERWOOD=Just a dash of Chemical X
 gadomancy.research_page.GOLEMSILVERWOOD.1=This golem is carved from a silverwood log. The extra magical affinities of silverwood allow this golem to hold more upgrades.<BR>§l§nSilverwood Golem Attributes§r<BR>§lDurability:§r Average<BR>§lStrength:§r Low<BR>§lSelf-repair:§r Average<BR>§lCarry Limit:§r 8<BR>§lSpeed:§r Fast<BR>§lUpgrades:§r 3
+
+#Obsidian golem
+tc.research_name.GADOMANCY.GOLEMOBSIDIAN=Obsidian Golems
+tc.research_text.GADOMANCY.GOLEMOBSIDIAN=Man in Black
+gadomancy.research_page.GOLEMOBSIDIAN.1=After observing the glassical crystal structure of the Obsidian for a long time, you succeeded in giving the obsidian's properties to the golem. This Golem have very sharp crystal structure all over its body. Also the rugged obsidian crystal structure forms its body, this golem have very high durability. But unfortunately, this crystal structure is very hard to recover, which means that the golem have disadvantage in Self-repair.
+gadomancy.research_page.GOLEMOBSIDIAN.2=<BR>§l§nObsidian Golem Attributes§r<BR>§lDurability:§r Very High<BR>§lStrength:§r Very High<BR>§lSelf-repair:§r Slow<BR>§lCarry Limit:§r 32<BR>§lSpeed:§r Slow<BR>§lUpgrades:§r 2
+
+#Gold golem
+tc.research_name.GADOMANCY.GOLEMGOLD=Golden Golems
+tc.research_text.GADOMANCY.GOLEMGOLD=Contemplation is a lifestyle
+gadomancy.research_page.GOLEMGOLD.1=As a Thaumaturge you have spent many hours laboring with gold. All these hours have given you inspiration to make a golden golem, something you had failed in doing so far. <BR/>By adding the essense of brains you have found the missing binding agent.<BR/>These golems seem very wise and thoughtful and have a very high resistance against the most brutal of beatings as if physical damage is beneath their elated tranquil thoughts, but their enthusiasm for work seems to be lacking.
+gadomancy.research_page.GOLEMGOLD.2=<BR/>You decide to use them as decocrational lackeys to show off your wealth.<BR>§l§nGold Golem Attributes§r<BR>§lDurability:§r Extremely High<BR>§lStrength:§r High<BR>§lSelf-repair:§r Extremely Fast<BR>§lCarry Limit:§r 1<BR>§lSpeed:§r Very Slow<BR>§lUpgrades:§r 5
+
+#Emerald golem
+tc.research_name.GADOMANCY.GOLEMEMERALD=Emerald Golem
+tc.research_text.GADOMANCY.GOLEMEMERALD=Feeling attached
+gadomancy.research_page.GOLEMEMERALD.1=After many hours of crafting you finally found the missing ingredient to give life to emeralds. <BR/>By pouring in the essence of life you have created a sturdy and affectionate golem, who is willing to shift mountains for you very eagerly. <BR/>You are not certain if this was a wise decision to craft this golem. It's eyes seem to be burning in your back everywhere.
+gadomancy.research_page.GOLEMEMERALD.2=<BR>§l§nEmerald Golem Attributes§r<BR>§lDurability:§r Very High<BR>§lStrength:§r Extremely High<BR>§lSelf-repair:§r Average<BR>§lCarry Limit:§r 64<BR>§lSpeed:§r Average<BR>§lUpgrades:§r 4
+
+#Voidmetal golem
+tc.research_name.GADOMANCY.GOLEMVOIDMETAL=Void Metal Golem
+tc.research_text.GADOMANCY.GOLEMVOIDMETAL=A creepy companion
+gadomancy.research_page.GOLEMVOIDMETAL.1=Your studies of the properties of voidmetal and void crystals have yielded interesting results. <BR/>Via the malleability of voidmetal, the self repairing aspects, the compartment shifting in the essentia reservoir you have devised a way to create a voidmetal helper. The theory is that it will carry its items in shifted compartments in itself.<BR/>You are not sure if you should make these helpers, as it's usually stable golem mind might get affected by the void.
+gadomancy.research_page.GOLEMVOIDMETAL.2=<BR>§l§nVoid Metal Golem Attributes§r<BR>§lDurability:§r High<BR>§lStrength:§r High<BR>§lSelf-repair:§r Extremely Fast<BR>§lCarry Limit:§r 128<BR>§lSpeed:§r Extremely Fast<BR>§lUpgrades:§r 3
 
 tc.research_name.GADOMANCY.GOLEMRUNICSHIELD=Golemic Shielding
 tc.research_text.GADOMANCY.GOLEMRUNICSHIELD=Now available to your tiny friends!
@@ -326,3 +353,39 @@ potion.eldritch=Eldritch
 potion.visdiscount=Vis Affinity
 
 gadomancy.enchantment.revealer=Thaumic Sight
+
+#Master's rings
+gadomancy.discount=discount
+item.ItemMasterRing.0.name=Master's Ring of Fire
+item.ItemMasterRing.1.name=Master's Ring of Water
+item.ItemMasterRing.2.name=Master's Ring of Earth
+item.ItemMasterRing.3.name=Master's Ring of Air
+item.ItemMasterRing.4.name=Master's Ring of Order
+item.ItemMasterRing.5.name=Master's Ring of Entropy
+item.ItemMasterRing.6.name=Master's One Ring
+
+tc.research_name.GADOMANCY.MASTERRINGIGNIS=Master's Ring of Fire
+tc.research_name.GADOMANCY.MASTERRINGAQUA=Master's Ring of Water
+tc.research_name.GADOMANCY.MASTERRINGTERRA=Master's Ring of Earth
+tc.research_name.GADOMANCY.MASTERRINGAER=Master's Ring of Air
+tc.research_name.GADOMANCY.MASTERRINGORDO=Master's Ring of Order
+tc.research_name.GADOMANCY.MASTERRINGPERDITIO=Master's Ring of Entropy
+tc.research_name.GADOMANCY.MASTERRINGONE=Master's One Ring
+
+tc.research_text.GADOMANCY.MASTERRINGIGNIS=It's getting hot in here
+tc.research_text.GADOMANCY.MASTERRINGAQUA=Bubbles and Splashes
+tc.research_text.GADOMANCY.MASTERRINGTERRA=Stay Strong, go Green
+tc.research_text.GADOMANCY.MASTERRINGAER=Light as a butterfly
+tc.research_text.GADOMANCY.MASTERRINGORDO=Keeping things in check
+tc.research_text.GADOMANCY.MASTERRINGPERDITIO=Chaos is a way of life
+tc.research_text.GADOMANCY.MASTERRINGONE=One Ring To Rule Them All
+
+gadomancy.research_page.MASTERRINGIGNIS.1=After having studied the properties of blaze wand cores you have come to the conclusion that there are more ways to tap into the self regenerating properties of this core.<BR/>After many failed attempts you have found a way to harness the recharging properties of the wand by infusing it in the apprentice ring you found, stabilising it by an upgraded crystal and using the mystique eye to stabilise the flow of vis from the other realm.<BR/>To your delight you have discovered it will disperse a small charge of ignis vis into your wands instead of storing the charge itself.
+gadomancy.research_page.MASTERRINGAQUA.1=After having studied the properties of ice wand cores you have come to the conclusion that there are more ways to tap into the self regenerating properties of this core.<BR/>After many failed attempts you have found a way to harness the recharging properties of the wand by infusing it in the apprentice ring you found, stabilising it by an upgraded crystal and using the mystique eye to stabilise the flow of vis from the other realm.<BR/>To your delight you have discovered it will disperse a small charge of aqua vis into your wands instead of storing the charge itself.
+gadomancy.research_page.MASTERRINGTERRA.1=After having studied the properties of obsidian wand cores you have come to the conclusion that there are more ways to tap into the self regenerating properties of this core.<BR/>After many failed attempts you have found a way to harness the recharging properties of the wand by infusing it in the apprentice ring you found, stabilising it by an upgraded crystal and using the mystique eye to stabilise the flow of vis from the other realm.<BR/>To your delight you have discovered it will disperse a small charge of terra vis into your wands instead of storing the charge itself.
+gadomancy.research_page.MASTERRINGAER.1=After having studied the properties of reed wand cores you have come to the conclusion that there are more ways to tap into the self regenerating properties of this core.<BR/>After many failed attempts you have found a way to harness the recharging properties of the wand by infusing it in the apprentice ring you found, stabilising it by an upgraded crystal and using the mystique eye to stabilise the flow of vis from the other realm.<BR/>To your delight you have discovered it will disperse a small charge of aer vis into your wands instead of storing the charge itself.
+gadomancy.research_page.MASTERRINGORDO.1=After having studied the properties of quartz wand cores you have come to the conclusion that there are more ways to tap into the self regenerating properties of this core.<BR/>After many failed attempts you have found a way to harness the recharging properties of the wand by infusing it in the apprentice ring you found, stabilising it by an upgraded crystal and using the mystique eye to stabilise the flow of vis from the other realm.<BR/>To your delight you have discovered it will disperse a small charge of ordo vis into your wands instead of storing the charge itself.
+gadomancy.research_page.MASTERRINGPERDITIO.1=After having studied the properties of bone wand cores you have come to the conclusion that there are more ways to tap into the self regenerating properties of this core.<BR/>After many failed attempts you have found a way to harness the recharging properties of the wand by infusing it in the apprentice ring you found, stabilising it by an upgraded crystal and using the mystique eye to stabilise the flow of vis from the other realm.<BR/>To your delight you have discovered it will disperse a small charge of perditio vis into your wands instead of storing the charge itself.
+gadomancy.research_page.MASTERRINGONE.1=Your researches into the Primal Master Rings has given you the self regenerating power of the wand cores without the regenerated vis being limited to that wand core.<BR/>Expanding on this knowledge you have found the inspiration to combine these rings into a singular ring that will recharge all wands with all types of vis.<BR/>By using the runic properties of a ring you have found the stabilizing key by which you can merge all the rings into a singular vis gateway by sacrificing some of the runic for stability.
+gadomancy.research_page.MASTERRINGONE.2=Unfortunately this was not enough to produce any output of vis of noticable quantities due to the runic contaiment field limiting output. By adding primal charms who disperse vis orbs naturally you found a way to increase the vis output through the runic containment to be somewhat useful to you although the output is irregular.  
+gadomancy.research_page.MASTERRINGONE.3=So far your experimentations have led to several destroyed runic matrixes due to the very unstable nature and the careful balancing required for this special ring.<BR/>You decide that before you craft this ring again and risk your life in the lightning of the matrix that you need to make doubly sure that you have properly stabilised your altar and removed any unstable elements from the vicinity.

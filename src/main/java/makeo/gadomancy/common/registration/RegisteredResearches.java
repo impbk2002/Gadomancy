@@ -10,11 +10,15 @@ import makeo.gadomancy.common.items.baubles.ItemEtherealFamiliar;
 import makeo.gadomancy.common.research.*;
 import makeo.gadomancy.common.utils.SimpleResourceLocation;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.oredict.OreDictionary;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
@@ -37,6 +41,10 @@ public class RegisteredResearches {
     private static final ResourceLocation CATEGORY_ICON = new SimpleResourceLocation("/items/category_icon.png");
 
     public static ResearchItem researchGolemSilverwood;
+    public static ResearchItem researchGolemObsidian;
+    public static ResearchItem researchGolemGold;
+    public static ResearchItem researchGolemEmerald;
+    public static ResearchItem researchGolemVoidMetal;
     public static ResearchItem researchGolemRunicShield;
     public static ResearchItem researchStickyJar;
     public static ResearchItem researchArcaneDropper;
@@ -82,16 +90,105 @@ public class RegisteredResearches {
     public static ResearchItem researchFamiliarAugmentSpeed;
     public static ResearchItem researchFamiliarAugmentRange;
 
+    public static ResearchItem researchMasterRingIgnis;
+    public static ResearchItem researchMasterRingAer;
+    public static ResearchItem researchMasterRingAqua;
+    public static ResearchItem researchMasterRingTera;
+    public static ResearchItem researchMasterRingOrdo;
+    public static ResearchItem researchMasterRingPerditio;
+    public static ResearchItem researchMasterRingOne;
+    
     public static void init() {
 
         ResearchCategories.registerCategory(Gadomancy.MODID, RegisteredResearches.CATEGORY_ICON, RegisteredResearches.CATEGORY_BACKGROUND);
 
+        ResearchItem researchVisAmulet = PseudoResearchItem.create("VISAMULET", 4, 7).registerResearchItem();
+
+        RegisteredResearches.researchMasterRingIgnis = new SimpleResearchItem("MASTERRINGIGNIS", 6, 9, 0, (ItemStack) RegisteredRecipes.recipeMasterRingIgnis.getRecipeOutput(),
+        		new AspectList().add(Aspect.FIRE, 3).add(Aspect.MAGIC, 4).add(Aspect.AURA, 3).add(Aspect.ENERGY, 5));
+        
+        RegisteredResearches.researchMasterRingAqua = new SimpleResearchItem("MASTERRINGAQUA", 9, 11, 0, (ItemStack) RegisteredRecipes.recipeMasterRingAqua.getRecipeOutput(),
+        		new AspectList().add(Aspect.WATER, 3).add(Aspect.MAGIC, 4).add(Aspect.AURA, 3).add(Aspect.ENERGY, 5));
+        
+        RegisteredResearches.researchMasterRingAer = new SimpleResearchItem("MASTERRINGAER", 9, 13, 0, (ItemStack) RegisteredRecipes.recipeMasterRingAer.getRecipeOutput(),
+        		new AspectList().add(Aspect.AIR, 3).add(Aspect.MAGIC, 4).add(Aspect.AURA, 3).add(Aspect.ENERGY, 5));
+        
+        RegisteredResearches.researchMasterRingTera = new SimpleResearchItem("MASTERRINGTERRA", 6, 15, 0, (ItemStack) RegisteredRecipes.recipeMasterRingTera.getRecipeOutput(),
+        		new AspectList().add(Aspect.EARTH, 3).add(Aspect.MAGIC, 4).add(Aspect.AURA, 3).add(Aspect.ENERGY, 5));
+        
+        RegisteredResearches.researchMasterRingOrdo = new SimpleResearchItem("MASTERRINGORDO", 3, 13, 0, (ItemStack) RegisteredRecipes.recipeMasterRingOrdo.getRecipeOutput(),
+        		new AspectList().add(Aspect.ORDER, 3).add(Aspect.MAGIC, 4).add(Aspect.AURA, 3).add(Aspect.ENERGY, 5));
+        
+        RegisteredResearches.researchMasterRingPerditio = new SimpleResearchItem("MASTERRINGPERDITIO", 3, 11, 0, (ItemStack) RegisteredRecipes.recipeMasterRingPerditio.getRecipeOutput(),
+        		new AspectList().add(Aspect.ENTROPY, 3).add(Aspect.MAGIC, 4).add(Aspect.AURA, 3).add(Aspect.ENERGY, 5));
+        
+        RegisteredResearches.researchMasterRingOne = new SimpleResearchItem("MASTERRINGONE", 6, 12, 0, (ItemStack) RegisteredRecipes.recipeMasterRingOne.getRecipeOutput(),
+        		new AspectList().add(Aspect.FIRE, 3).add(Aspect.MAGIC, 4).add(Aspect.AURA, 3).add(Aspect.ENERGY, 5).add(Aspect.ENTROPY, 3).add(Aspect.EARTH, 3).add(Aspect.ORDER, 3).add(Aspect.AIR, 3).add(Aspect.WATER, 3));
+        
+        RegisteredResearches.researchMasterRingIgnis.setPages(new ResearchPage[] { new ResearchPage("gadomancy.research_page.MASTERRINGIGNIS.1"), new ResearchPage((InfusionRecipe)RegisteredRecipes.recipeMasterRingIgnis) })
+        		.setItemTriggers(new ItemStack[] { ConfigItems.WAND_ROD_BLAZE.getItem(), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemGolemUpgrade, 1, 2) })
+        		.setParents(new String[] { researchVisAmulet.key, "UPGRADEFIRE", "RUNICAUGMENTATION", "ROD_blaze" }).setConcealed().setStub().setRound().registerResearchItem();
+        
+        RegisteredResearches.researchMasterRingAqua.setPages(new ResearchPage[] { new ResearchPage("gadomancy.research_page.MASTERRINGAQUA.1"), new ResearchPage((InfusionRecipe)RegisteredRecipes.recipeMasterRingAqua) })
+        		.setParents(new String[] { "UPGRADEWATER", "RUNICAUGMENTATION", "ROD_ice", researchMasterRingIgnis.key }).setParentsHidden(new String[] { researchVisAmulet.key })
+        		.setItemTriggers(new ItemStack[] { ConfigItems.WAND_ROD_ICE.getItem(), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemGolemUpgrade, 1, 3) })
+        		.setStub().setConcealed().setRound().registerResearchItem();
+        
+        RegisteredResearches.researchMasterRingAer.setPages(new ResearchPage[] { new ResearchPage("gadomancy.research_page.MASTERRINGAER.1"), new ResearchPage((InfusionRecipe)RegisteredRecipes.recipeMasterRingAer) })
+        		.setParents(new String[] { "UPGRADEAIR", "RUNICAUGMENTATION", "ROD_reed", researchMasterRingAqua.key }).setParentsHidden(new String[] { researchVisAmulet.key })
+        		.setItemTriggers(new ItemStack[] { ConfigItems.WAND_ROD_REED.getItem(), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemGolemUpgrade, 1, 0) })
+        		.setStub().setConcealed().setRound().registerResearchItem();
+        
+        RegisteredResearches.researchMasterRingTera.setPages(new ResearchPage[] { new ResearchPage("gadomancy.research_page.MASTERRINGTERRA.1"), new ResearchPage((InfusionRecipe)RegisteredRecipes.recipeMasterRingTera) })
+        		.setParents(new String[] { "UPGRADEEARTH", "RUNICAUGMENTATION", "ROD_obsidian", researchMasterRingOrdo.key, researchMasterRingAer.key }).setParentsHidden(new String[] { researchVisAmulet.key })
+        		.setItemTriggers(new ItemStack[] { ConfigItems.WAND_ROD_OBSIDIAN.getItem(), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemGolemUpgrade, 1, 1) })
+        		.setStub().setConcealed().setRound().registerResearchItem();
+        
+        RegisteredResearches.researchMasterRingOrdo.setPages(new ResearchPage[] { new ResearchPage("gadomancy.research_page.MASTERRINGORDO.1"), new ResearchPage((InfusionRecipe)RegisteredRecipes.recipeMasterRingOrdo) })
+        		.setParents(new String[] { "UPGRADEORDER", "RUNICAUGMENTATION", "ROD_quartz", researchMasterRingPerditio.key }).setParentsHidden(new String[] { researchVisAmulet.key })
+        		.setItemTriggers(new ItemStack[] { ConfigItems.WAND_ROD_QUARTZ.getItem(), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemGolemUpgrade, 1, 4) })
+        		.setStub().setConcealed().setRound().registerResearchItem();
+        
+        RegisteredResearches.researchMasterRingPerditio.setPages(new ResearchPage[] { new ResearchPage("gadomancy.research_page.MASTERRINGPERDITIO.1"), new ResearchPage((InfusionRecipe)RegisteredRecipes.recipeMasterRingPerditio) })
+        		.setParents(new String[] { "UPGRADEENTROPY", "RUNICAUGMENTATION", "ROD_bone", researchMasterRingIgnis.key }).setParentsHidden(new String[] { researchVisAmulet.key })
+        		.setItemTriggers(new ItemStack[] { ConfigItems.WAND_ROD_BONE.getItem(), new ItemStack(ConfigItems.itemEldritchObject, 1, 0), new ItemStack(ConfigItems.itemGolemUpgrade, 1, 5) })
+        		.setStub().setConcealed().setRound().registerResearchItem();
+        
+        RegisteredResearches.researchMasterRingOne.setPages(new ResearchPage[] { new ResearchPage("gadomancy.research_page.MASTERRINGONE.1"), new ResearchPage("gadomancy.research_page.MASTERRINGONE.2"), new ResearchPage("gadomancy.research_page.MASTERRINGONE.3"), new ResearchPage((InfusionRecipe)RegisteredRecipes.recipeMasterRingOne) })
+        		.setParents(new String[] { researchMasterRingIgnis.key, researchMasterRingAqua.key, researchMasterRingAer.key, researchMasterRingOrdo.key, researchMasterRingTera.key, researchMasterRingPerditio.key })
+        		.setItemTriggers(new ItemStack[] { new ItemStack(RegisteredItems.itemBaubleRing, 1, 0), new ItemStack(RegisteredItems.itemBaubleRing, 1, 1), new ItemStack(ConfigItems.itemResource, 1, 15), new ItemStack(RegisteredItems.itemBaubleRing, 1, 2), new ItemStack(RegisteredItems.itemBaubleRing, 1, 3), new ItemStack(RegisteredItems.itemBaubleRing, 1, 4), new ItemStack(RegisteredItems.itemBaubleRing, 1, 5) })
+        		.setStub().setConcealed().setSpecial().setLost().registerResearchItem();
+        
         ResearchItem researchTallowGolem = PseudoResearchItem.create("GOLEMTALLOW", 0, -5).registerResearchItem();
+        ResearchItem researchAdvancedGolem = PseudoResearchItem.create("ADVANCEDGOLEM", 0, -7).registerResearchItem();
 
         RegisteredResearches.researchGolemSilverwood = new SimpleResearchItem("GOLEMSILVERWOOD", 1, -2, 3, (ItemStack) RegisteredRecipes.recipeGolemSilverwood.getRecipeOutput(),
                 new AspectList().add(Aspect.MOTION, 10).add(Aspect.TREE, 10).add(Aspect.MAGIC, 8).add(Aspect.ORDER, 8).add(Aspect.FLESH, 6).add(Aspect.EXCHANGE, 5))
                 .setParents(researchTallowGolem.key).setConcealed()
                 .setPages(new ResearchPage("gadomancy.research_page.GOLEMSILVERWOOD.1"), new ResearchPage(RegisteredRecipes.recipeGolemSilverwood)).registerResearchItem();
+
+        RegisteredResearches.researchGolemObsidian = new SimpleResearchItem("GOLEMOBSIDIAN", 0, -2, 2, (ItemStack) RegisteredRecipes.recipeGolemObsidian.getRecipeOutput(),
+                new AspectList().add(Aspect.MOTION, 10).add(Aspect.CRYSTAL, 10).add(Aspect.ORDER, 8).add(Aspect.DARKNESS, 6).add(Aspect.EXCHANGE, 5))
+                .setParents(researchTallowGolem.key).setConcealed().setItemTriggers(new ItemStack(Blocks.obsidian, 1))
+                .setPages(new ResearchPage("gadomancy.research_page.GOLEMOBSIDIAN.1"), new ResearchPage("gadomancy.research_page.GOLEMOBSIDIAN.2"), new ResearchPage(RegisteredRecipes.recipeGolemObsidian)).registerResearchItem();
+
+        RegisteredResearches.researchGolemGold = new SimpleResearchItem("GOLEMGOLD", 2, -9, 2, (ItemStack) RegisteredRecipes.recipeGolemGold.getRecipeOutput(),
+                new AspectList().add(Aspect.GREED, 5).add(Aspect.METAL, 10).add(Aspect.GREED, 5).add(Aspect.METAL, 10).add(Aspect.SENSES, 12))
+                .setParents(researchAdvancedGolem.key).setConcealed().setRound()
+                .setItemTriggers(new ItemStack[] { OreDictionary.getOres("blockGold").get(0), new ItemStack(Blocks.gold_ore, 1), new ItemStack(Items.gold_ingot, 1), new ItemStack(Items.golden_apple), new ItemStack(Items.golden_axe), (ItemStack) RegisteredRecipes.recipeGolemGold.getRecipeOutput() })
+                .setPages(new ResearchPage("gadomancy.research_page.GOLEMGOLD.1"), new ResearchPage("gadomancy.research_page.GOLEMGOLD.2"), new ResearchPage(RegisteredRecipes.recipeGolemGold)).registerResearchItem();
+        
+        RegisteredResearches.researchGolemEmerald = new SimpleResearchItem("GOLEMEMERALD", 0, -9, 6, (ItemStack) RegisteredRecipes.recipeGolemEmerald.getRecipeOutput(),
+                new AspectList().add(Aspect.GREED, 5).add(Aspect.CRYSTAL, 10).add(Aspect.LIFE, 12))
+                .setParents(researchAdvancedGolem.key).setConcealed().setRound()
+                .setItemTriggers(new ItemStack[] { OreDictionary.getOres("blockEmerald").get(0), new ItemStack(Items.emerald, 1), (ItemStack) RegisteredRecipes.recipeGolemVoidMetal.getRecipeOutput(), new ItemStack(Blocks.emerald_block, 1) })
+                .setPages(new ResearchPage("gadomancy.research_page.GOLEMEMERALD.1"), new ResearchPage("gadomancy.research_page.GOLEMEMERALD.2"), new ResearchPage(RegisteredRecipes.recipeGolemEmerald)).registerResearchItem();
+        
+        RegisteredResearches.researchGolemVoidMetal = new SimpleResearchItem("GOLEMVOIDMETAL", -2, -9, 1, (ItemStack) RegisteredRecipes.recipeGolemVoidMetal.getRecipeOutput(),
+                new AspectList().add(Aspect.MAN, 5).add(Aspect.DARKNESS, 10).add(Aspect.ELDRITCH, 12)).setParentsHidden(new String[] { "ESSENTIARESERVOIR" })
+                .setParents(new String[] { researchAdvancedGolem.key, researchGolemEmerald.key, researchGolemGold.key }).setConcealed().setRound().setSpecial().setStub()
+                .setItemTriggers(new ItemStack[] { new ItemStack(ConfigItems.itemChestVoidRobe) })
+                .setPages(new ResearchPage("gadomancy.research_page.GOLEMVOIDMETAL.1"), new ResearchPage("gadomancy.research_page.GOLEMVOIDMETAL.2"), new ResearchPage(RegisteredRecipes.recipeGolemVoidMetal)).registerResearchItem();
 
         RegisteredResearches.researchGolemRunicShield = new SimpleResearchItem("GOLEMRUNICSHIELD", 0, 0, 4, new ItemStack(RegisteredItems.itemFakeGolemShield, 1, 32767),
                 new AspectList().add(Aspect.AURA, 16).add(Aspect.ARMOR, 6).add(Aspect.MAGIC, 4).add(Aspect.MOTION, 8))

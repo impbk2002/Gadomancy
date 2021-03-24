@@ -7,6 +7,7 @@ import makeo.gadomancy.common.Gadomancy;
 import makeo.gadomancy.common.items.*;
 import makeo.gadomancy.common.items.baubles.ItemEtherealFamiliar;
 import makeo.gadomancy.common.items.baubles.ItemFamiliar_Old;
+import makeo.gadomancy.common.items.baubles.ItemMasterRing;
 import makeo.gadomancy.common.research.SimpleResearchItem;
 import makeo.gadomancy.common.utils.Injector;
 import net.minecraft.creativetab.CreativeTabs;
@@ -57,7 +58,7 @@ public class RegisteredItems {
     public static ItemFakeLootbag itemFakeLootbag;
     public static ItemAuraCore itemAuraCore;
     public static ItemElement itemElement;
-
+    public static ItemMasterRing itemBaubleRing;
     public static void preInit() {
         RegisteredItems.creativeTab = new CreativeTabs(Gadomancy.MODID) {
             @Override
@@ -85,7 +86,7 @@ public class RegisteredItems {
         RegisteredItems.itemEtherealFamiliar = RegisteredItems.registerItem(new ItemEtherealFamiliar());
         RegisteredItems.itemAuraCore = RegisteredItems.registerItem(new ItemAuraCore());
         RegisteredItems.itemElement = RegisteredItems.registerItem(new ItemElement());
-
+        RegisteredItems.itemBaubleRing = RegisteredItems.registerItem(new ItemMasterRing(), "ItemMasterRing");
         RegisteredItems.itemCreativeNode = RegisteredItems.registerItem(new ItemCreativeNode());
         RegisteredItems.itemPackage = RegisteredItems.registerItem(new ItemArcanePackage());
         RegisteredItems.itemFakeLootbag = RegisteredItems.registerItem(Thaumcraft.MODID, new ItemFakeLootbag());
