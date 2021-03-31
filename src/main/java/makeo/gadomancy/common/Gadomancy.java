@@ -28,7 +28,7 @@ public class Gadomancy {
 
     private static final String PROXY_CLIENT = "makeo.gadomancy.client.ClientProxy";
     private static final String PROXY_SERVER = "makeo.gadomancy.common.CommonProxy";
-    public static final boolean TEST = true;
+
     @Mod.Instance(Gadomancy.MODID)
     public static Gadomancy instance;
 
