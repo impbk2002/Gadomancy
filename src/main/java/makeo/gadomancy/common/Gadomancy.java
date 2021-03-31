@@ -24,18 +24,18 @@ public class Gadomancy {
     public static final String MODID = "gadomancy";
     public static final String NAME = "Gadomancy";
 
-    public static final String VERSION = "1.0.7.4";
+    public static final String VERSION = "1.0.8.2";
 
     private static final String PROXY_CLIENT = "makeo.gadomancy.client.ClientProxy";
     private static final String PROXY_SERVER = "makeo.gadomancy.common.CommonProxy";
-
+    public static final boolean TEST = true;
     @Mod.Instance(Gadomancy.MODID)
     public static Gadomancy instance;
 
     @SidedProxy(clientSide = Gadomancy.PROXY_CLIENT, serverSide = Gadomancy.PROXY_SERVER)
     public static CommonProxy proxy;
 
-    public static Logger log = LogManager.getLogger("Gadomancy");
+    public static Logger log = LogManager.getLogger(Gadomancy.MODID);
     private static ModData modData;
 
     public static ModData getModData() {
@@ -70,7 +70,6 @@ public class Gadomancy {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         Gadomancy.proxy.initalize();
-
         FMLInterModComms.sendMessage(Thaumcraft.MODID, "dimensionBlacklist", ModConfig.dimOuterId + ":0");
     }
 

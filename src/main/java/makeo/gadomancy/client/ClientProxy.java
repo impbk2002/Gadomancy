@@ -6,25 +6,17 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import makeo.gadomancy.client.effect.EffectHandler;
-import makeo.gadomancy.client.events.ClientHandler;
-import makeo.gadomancy.client.events.RenderEventHandler;
-import makeo.gadomancy.client.events.ResourceReloadListener;
-import makeo.gadomancy.client.gui.ArcanePackagerGui;
-import makeo.gadomancy.client.gui.InfusionClawGui;
-import makeo.gadomancy.client.renderers.block.BlockExtendedNodeJarRenderer;
-import makeo.gadomancy.client.renderers.block.RenderBlockStoneMachine;
-import makeo.gadomancy.client.renderers.block.RenderBlockTransparent;
-import makeo.gadomancy.client.renderers.entity.RenderAdditionalGolemBase;
-import makeo.gadomancy.client.renderers.entity.RenderEntityAuraCore;
+import makeo.gadomancy.client.events.*;
+import makeo.gadomancy.client.gui.*;
+import makeo.gadomancy.client.renderers.block.*;
+import makeo.gadomancy.client.renderers.entity.*;
 import makeo.gadomancy.client.renderers.item.*;
 import makeo.gadomancy.client.renderers.tile.*;
 import makeo.gadomancy.client.util.MultiTickEffectDispatcher;
 import makeo.gadomancy.common.CommonProxy;
 import makeo.gadomancy.common.blocks.tiles.*;
-import makeo.gadomancy.common.entities.EntityAuraCore;
-import makeo.gadomancy.common.entities.EntityPermNoClipItem;
-import makeo.gadomancy.common.registration.RegisteredBlocks;
-import makeo.gadomancy.common.registration.RegisteredItems;
+import makeo.gadomancy.common.entities.*;
+import makeo.gadomancy.common.registration.*;
 import makeo.gadomancy.common.utils.Injector;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
@@ -44,9 +36,7 @@ import thaumcraft.client.renderers.entity.RenderSpecialItem;
 import thaumcraft.client.renderers.tile.TileEldritchPortalRenderer;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.entities.golems.EntityGolemBase;
-import thaumcraft.common.tiles.TileEldritchAltar;
-import thaumcraft.common.tiles.TileEldritchCap;
-import thaumcraft.common.tiles.TileEldritchObelisk;
+import thaumcraft.common.tiles.*;
 
 import java.util.ArrayDeque;
 import java.util.List;
@@ -198,8 +188,8 @@ public class ClientProxy extends CommonProxy {
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch (ID) {
             case 0:
-                return new GuiGolem(player, (EntityGolemBase) world.getEntityByID(x));
-                //return new AdditionalGolemGui(player, (EntityGolemBase)world.getEntityByID(x));
+                //return new GuiGolem(player, (EntityGolemBase) world.getEntityByID(x));
+                return new AdditionalGolemGui(player, (EntityGolemBase)world.getEntityByID(x));
             case 1:
                 return new InfusionClawGui(player.inventory, (IInventory) world.getTileEntity(x, y, z));
             case 2:

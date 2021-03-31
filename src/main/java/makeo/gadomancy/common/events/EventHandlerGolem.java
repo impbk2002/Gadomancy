@@ -1,45 +1,35 @@
 package makeo.gadomancy.common.events;
 
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.eventhandler.*;
 import makeo.gadomancy.api.GadomancyApi;
 import makeo.gadomancy.api.golems.AdditionalGolemType;
 import makeo.gadomancy.api.golems.cores.AdditionalGolemCore;
-import makeo.gadomancy.api.golems.events.GolemDropPlacerEvent;
-import makeo.gadomancy.api.golems.events.PlacerCreateGolemEvent;
+import makeo.gadomancy.api.golems.events.*;
+import makeo.gadomancy.client.gui.AdditionalGolemGui;
 import makeo.gadomancy.common.Gadomancy;
-import makeo.gadomancy.common.data.DataAchromatic;
-import makeo.gadomancy.common.data.SyncDataHolder;
+import makeo.gadomancy.common.data.*;
 import makeo.gadomancy.common.data.config.ModConfig;
 import makeo.gadomancy.common.entities.golems.ItemAdditionalGolemPlacer;
 import makeo.gadomancy.common.entities.golems.nbt.ExtendedGolemProperties;
-import makeo.gadomancy.common.registration.RegisteredGolemStuff;
-import makeo.gadomancy.common.registration.RegisteredPotions;
-import makeo.gadomancy.common.utils.NBTHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import makeo.gadomancy.common.registration.*;
+import makeo.gadomancy.common.utils.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
+import net.minecraftforge.event.entity.*;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.EntityInteractEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.*;
+import thaumcraft.client.gui.GuiGolem;
 import thaumcraft.common.config.ConfigItems;
-import thaumcraft.common.entities.golems.EntityGolemBase;
-import thaumcraft.common.entities.golems.EnumGolemType;
-import thaumcraft.common.entities.golems.ItemGolemPlacer;
+import thaumcraft.common.entities.golems.*;
 import thaumcraft.common.items.wands.ItemWandCasting;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This class is part of the Gadomancy Mod
@@ -50,6 +40,7 @@ import java.util.Map;
  * Created by makeo @ 13.03.2015 13:56
  */
 public class EventHandlerGolem {
+	
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void on(EntityEvent.EntityConstructing e) {
         if(e.entity instanceof EntityGolemBase) {
@@ -215,7 +206,7 @@ public class EventHandlerGolem {
             }*/
         }
     }
-
+    /**Golem interact with playerEvent. ex) openGui...*/
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void on(EntityInteractEvent event) {
         ItemStack heldItem = event.entityPlayer.getHeldItem();
@@ -251,7 +242,7 @@ public class EventHandlerGolem {
                         if(core != null) {
                             if(core.hasGui() && !core.openGui(event.entityPlayer, golem)) {
                                 event.entityPlayer.openGui(Gadomancy.instance, 0, golem.worldObj, golem.getEntityId(), 0, 0);
-                            }
+                        	}
                             event.setCanceled(true);
                         }
                     }
@@ -265,7 +256,21 @@ public class EventHandlerGolem {
             }
         }
     }
-
+    
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void on(GuiOpenEvent event) {
+    	if(event.gui instanceof GuiGolem && !(event.gui instanceof AdditionalGolemGui)) {
+			GuiGolem gui = (GuiGolem) event.gui;
+			ContainerGolem container = (ContainerGolem)gui.inventorySlots;
+			EntityPlayer player = container.playerInv.player;
+			EntityGolemBase golem = (EntityGolemBase) container.mobInv.ent;
+			if(GadomancyApi.getAdditionalGolemType(golem.getGolemType()) != null) {
+				Gadomancy.log.info(" "+GadomancyApi.getAdditionalGolemType(golem.getGolemType()).getEnumEntry().toString()+" Catched");
+				event.gui = new AdditionalGolemGui(player, golem);
+			}
+    	}
+    }
+    
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void on(ItemTooltipEvent event) {
         if(event.itemStack != null) {

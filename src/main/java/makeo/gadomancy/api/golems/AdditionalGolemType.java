@@ -84,4 +84,21 @@ public abstract class AdditionalGolemType {
     public void setModId(String modId) {
         this.modId = modId;
     }
+    public enum GolemSlotPoint {
+    	STRAW, WOOD, TALLOW, CLAY, FLESH, STONE, IRON, THAUMIUM, CUSTOM1, CUSTOM2,
+    	CUSTOM3, CUSTOM4, CUSTOM5, CUSTOM6, CUSTOM7, CUSTOM8, CUSTOM9, CUSTOM10, CUSTOM11, CUSTOM12,
+    	CUSTOM13, CUSTOM14, CUSTOM15, CUSTOM16, CUSTOM17, CUSTOM18, CUSTOM19, CUSTOM20, CUSTOM21, CUSTOM22;
+    	public final int[] getSlotStart() {
+    		return new int[] {184 + 24*Math.floorDiv(this.ordinal(), 10), 24*Math.floorMod(this.ordinal(), 10)};
+    	}
+    	public final int[] getSlotEnd() {
+    		return new int[] {184 + 24*Math.floorDiv(this.ordinal() + 1, 10) - 1, 24*Math.floorMod(this.ordinal() + 1, 10) - 1};
+    	}
+    	public static final GolemSlotPoint getSlot(int ordinal) {
+    		if((ordinal+1) > GolemSlotPoint.values().length) {
+    			return null;
+    		}
+    		return GolemSlotPoint.values()[ordinal];
+    	}
+    }
 }

@@ -160,8 +160,9 @@ public class RegisteredRecipes {
                 /*new ItemStack(Items.bread, 1, 0),*/new ItemStack(typeSilverwood.getPlacerItem(), 1, typeSilverwood.getEnumEntry().ordinal()),
                 7, new AspectList().add(Aspect.MOTION, 16).add(Aspect.MAGIC, 16).add(Aspect.MAN, 16).add(Aspect.SENSES, 16),
                 new ItemStack(ConfigBlocks.blockMagicalLog, 1, 1), new ItemStack[]{ new ItemStack(ConfigItems.itemResource, 1, 15), new ItemStack(ConfigItems.itemResource, 1, 14), new ItemStack(ConfigItems.itemResource, 1, 9), new ItemStack(ConfigItems.itemResource, 1, 3), new ItemStack(ConfigItems.itemResource, 1, 14), new ItemStack(ConfigItems.itemResource, 1, 9), new ItemStack(ConfigItems.itemResource, 1, 3)});
-        
+
         //OreDictionary.getOres("nuggetVoid").get(0) == new ItemStack(ConfigItems.itemNugget, 1, 7)
+
         RegisteredRecipes.recipeGolemVoidMetal = ThaumcraftApi.addInfusionCraftingRecipe(SimpleResearchItem.getFullName("GOLEMVOIDMETAL"),
         		new ItemStack(typeVoidMetal.getPlacerItem(), 1, typeVoidMetal.getEnumEntry().ordinal()), 10,
         		new AspectList().add(Aspect.VOID, 72).add(Aspect.DARKNESS, 72).add(Aspect.ELDRITCH, 18).add(Aspect.MAN, 4).add(Aspect.MOTION, 4).add(Aspect.SOUL, 4),
@@ -178,7 +179,7 @@ public class RegisteredRecipes {
         RegisteredRecipes.recipeGolemObsidian = ThaumcraftApi.addCrucibleRecipe(SimpleResearchItem.getFullName("GOLEMOBSIDIAN"),
         		new ItemStack(typeObsidian.getPlacerItem(), 1, typeObsidian.getEnumEntry().ordinal()), new ItemStack(Blocks.obsidian),
         		new AspectList().add(Aspect.MAN, 4).add(Aspect.MOTION, 4).add(Aspect.SOUL, 4).add(Aspect.ELDRITCH, 4));
-        
+
         RegisteredRecipes.recipesGolemRunicShield = InfusionUpgradeRecipe.createRecipes(SimpleResearchItem.getFullName("GOLEMRUNICSHIELD"), RegisteredGolemStuff.upgradeRunicShield, 5,
                 new AspectList().add(Aspect.MAGIC, 16).add(Aspect.ENERGY, 16).add(Aspect.ARMOR, 8).add(Aspect.AURA, 4),
                 new ItemStack[]{new ItemStack(ConfigItems.itemGirdleRunic, 1, 0), new ItemStack(ConfigItems.itemResource, 1, 14), new ItemStack(ConfigItems.itemResource, 1, 14)});

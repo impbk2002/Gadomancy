@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 public class GoldGolemType extends AdditionalGolemType {
 	
     public GoldGolemType() {
-        super(140, 10, 0.2f, true, 5, 1, 30, 4);
+        super(120, 10, 0.2f, true, 5, 1, 30, 4);
     }
     @Override
     public String getUnlocalizedName() {
@@ -27,7 +27,7 @@ public class GoldGolemType extends AdditionalGolemType {
     @Override
     public IIcon getIcon(ItemStack stack, int pass) {
         return this.icon;
-    }//guigolem
+    }
 
     @Override
     public ResourceLocation getEntityTexture() {

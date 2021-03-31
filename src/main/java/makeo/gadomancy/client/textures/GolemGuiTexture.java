@@ -2,6 +2,7 @@ package makeo.gadomancy.client.textures;
 
 import makeo.gadomancy.api.GadomancyApi;
 import makeo.gadomancy.api.golems.AdditionalGolemType;
+import makeo.gadomancy.api.golems.AdditionalGolemType.GolemSlotPoint;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
@@ -28,7 +29,6 @@ import java.util.List;
  */
 public class GolemGuiTexture extends BaseTexture {
     private static final Logger LOGGER = LogManager.getLogger();
-
     @Override
     public int getGlTextureId() {
         return super.getGlTextureId();
@@ -83,21 +83,27 @@ public class GolemGuiTexture extends BaseTexture {
 
     private BufferedImage manipulateImage(IResourceManager resourceManager, BufferedImage image) throws IOException {
         int scale = image.getWidth() / 256;
-
         List<AdditionalGolemType> types = GadomancyApi.getAdditionalGolemTypes();
 
         int newHeight = (24*scale) * (this.getMaxOrdinal() + 1);
-        BufferedImage newImg = new BufferedImage(image.getWidth(), newHeight < image.getHeight() ? image.getHeight() : newHeight, image.getType());
+        //BufferedImage newImg = new BufferedImage(image.getWidth(), newHeight < image.getHeight() ? image.getHeight() : newHeight, image.getType());
+        BufferedImage newImg = new BufferedImage(image.getWidth(),  image.getHeight() , image.getType());
 
         for(int x = 0; x < image.getWidth(); x++) {
             for(int y = 0; y < image.getHeight(); y++) {
                 newImg.setRGB(x, y, image.getRGB(x, y));
             }
         }
-
         for(AdditionalGolemType type : types) {
             try {
                 int ordinal = type.getEnumEntry().ordinal();
+                if(GolemSlotPoint.getSlot(ordinal)==null) {
+                	GolemGuiTexture.LOGGER.fatal(" Cannot allocate extra slot image for " +type.getEnumEntry().toString());
+                	GolemGuiTexture.LOGGER.fatal(type.getEnumEntry().ordinal()+" exceed maximum limit of slot number");
+                	break;
+                }
+                int[] point = GolemSlotPoint.getSlot(ordinal).getSlotStart();
+
                 BufferedImage slotImg = this.loadImage(resourceManager, type.getInvSlotTexture());
 
                 float slotScale = (24*scale) / (float)slotImg.getWidth();
@@ -105,10 +111,9 @@ public class GolemGuiTexture extends BaseTexture {
                 if(slotScale > 1) {
                     slotImg = this.scaleImage(slotImg, slotScale, slotScale);
                 }
-
                 for(int x = 0; x < slotImg.getWidth(); x++) {
                     for(int y = 0; y < slotImg.getHeight(); y++) {
-                        newImg.setRGB((184*scale) + x, ordinal * (24*scale) + y, slotImg.getRGB(x, y));
+                        newImg.setRGB(point[0] + x, point[1] + y, slotImg.getRGB(x, y));
                     }
                 }
             } catch (IOException e) {
@@ -143,7 +148,6 @@ public class GolemGuiTexture extends BaseTexture {
         return max;
     }
 }
-
 
 
 

@@ -27,7 +27,6 @@ public class GolemEnumHelper {
     private static final Injector INJECTOR = new Injector(EnumGolemType.class);
     private static final Injector ENUM_INJECTOR = new Injector(Enum.class);
     private static final Injector HELPER_INJECTOR = new Injector(EnumHelper.class);
-
     private static Field valuesField;
     private static Field getValuesField() {
         if(GolemEnumHelper.valuesField == null) {

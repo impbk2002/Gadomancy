@@ -87,7 +87,7 @@ public class RenderEventHandler {
     public void on(GuiScreenEvent.DrawScreenEvent.Post e) {
         if(this.oldGolemblurb != null) {
             String key = "golemblurb." + this.blurbId + ".text";
-            ResourceReloadListener.languageList.put(key, this.oldGolemblurb);
+            ResourceReloadListener.languageList.put(key, (String) this.oldGolemblurb);
             this.oldGolemblurb = null;
         }
     }

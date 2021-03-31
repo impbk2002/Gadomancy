@@ -16,13 +16,18 @@ buildscript {
 }
 
 apply plugin: 'forge'
-
-version = "1.7.10-1.0.8.1"
+apply plugin: 'java'
+file "build.properties" withReader {
+    def prop = new Properties()
+    prop.load(it)
+    ext.config = new ConfigSlurper().parse prop
+}
+version = "${config.minecraft.version}-${config.gadomancy.version}"
 group= "makeo.gadomancy"
 archivesBaseName = "gadomancy"
 
 minecraft {
-    version = "1.7.10-10.13.4.1614-1.7.10"
+    version = "${config.minecraft.version}-${config.forge.version}-${config.minecraft.version}"
     runDir = "run"
 }
 

@@ -23,8 +23,10 @@ public abstract class GadomancyApi {
     public static void setInstance(IApiHandler handler) {
         GadomancyApi.handler = handler;
     }
+    public static IApiHandler getInstance() {
+    	return GadomancyApi.handler;
+    }
 
-    @Deprecated
     public static boolean registerAdditionalGolemType(String name, String modId, AdditionalGolemType newType){
         return GadomancyApi.handler.registerAdditionalGolemType(name, modId, newType);
     }

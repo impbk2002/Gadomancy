@@ -39,13 +39,10 @@ public class RegisteredGolemStuff {
     public static void init() {
         RegisteredGolemStuff.typeSilverwood = RegisteredGolemStuff.registerGolemType("SILVERWOOD", new SilverwoodGolemType());
         RegisteredGolemStuff.typeObsidian = RegisteredGolemStuff.registerGolemType("OBSIDIAN", new ObsidianGolemType());
-
-        //typeObsidian = registerGolemType("OBSIDIAN", new ObsidianGolemType());
-
-        RegisteredGolemStuff.typeGold = RegisteredGolemStuff.registerGolemType("GOLD", new GoldGolemType());
         RegisteredGolemStuff.typeVoidMetal = RegisteredGolemStuff.registerGolemType("VOIDMETAL", new VoidMetalGolemType());
+        RegisteredGolemStuff.typeGold = RegisteredGolemStuff.registerGolemType("GOLD", new GoldGolemType());
         RegisteredGolemStuff.typeEmerald = RegisteredGolemStuff.registerGolemType("EMERALD", new EmeraldGolemType());
-        
+
         RegisteredGolemStuff.breakCore = RegisteredGolemStuff.registerGolemCore("breakCore", new BreakGolemCore());
         RegisteredGolemStuff.bodyguardCore = RegisteredGolemStuff.registerGolemCore("bodyguardCore", new BodyguardGolemCore());
 
