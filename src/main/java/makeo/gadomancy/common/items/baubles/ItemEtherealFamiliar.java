@@ -19,6 +19,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.input.Keyboard;
+
+import thaumcraft.api.IRunicArmor;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.common.lib.research.ResearchManager;
 
@@ -34,7 +36,7 @@ import java.util.Set;
  *
  * Created by HellFirePvP @ 28.12.2015 23:09
  */
-public class ItemEtherealFamiliar extends Item implements IBauble {
+public class ItemEtherealFamiliar extends Item implements IBauble, IRunicArmor {
 
     public ItemEtherealFamiliar() {
         this.setUnlocalizedName("ItemEtherealFamiliar");
@@ -225,5 +227,10 @@ public class ItemEtherealFamiliar extends Item implements IBauble {
     public boolean canUnequip(ItemStack itemStack, EntityLivingBase entityLivingBase) {
         return true;
     }
+
+	@Override
+	public int getRunicCharge(ItemStack itemstack) {
+		return 0;
+	}
 
 }
