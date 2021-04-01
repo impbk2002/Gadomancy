@@ -26,6 +26,7 @@ public class EtherealFamiliarUpgradeRecipe extends InfusionRecipe {
         super(research, null, inst, aspects2, familiarIn, surroundings);
         this.toAdd = toAdd;
         this.requiredPreviousLevel = reqPrev;
+        this.recipeOutput = getRecipeOutput(familiarIn);
     }
 
     @Override
